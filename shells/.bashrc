@@ -3,7 +3,7 @@
 #
 
 # set prompt
-export PS1="\[\e[36m\][\[\e[m\]\[\e[33m\]\u\[\e[m\]@\[\e[35m\]\h\[\e[m\] \\$ \[\e[37m\]\w\[\e[m\]\[\e[36m\]]\[\e[m\] "
+export PS1='\[\e[0;93m\][\[\e[0;96m\]\u\[\e[0;95m\]@\[\e[0;96m\]\h \[\e[0;92m\]\w\[\e[0;93m\]]\[\e[0;90m\]$\[\e[0m\] '
 
 # options
 shopt -s autocd

@@ -1,0 +1,13 @@
+add_newline = false
+
+[directory]
+format = "in [$path]($style)[$read_only]($read_only_style) "
+
+[hostname]
+ssh_only = false
+format = "@[$hostname](bold purple) "
+
+[username]
+show_always = true
+format = "[$user]($style)"
+

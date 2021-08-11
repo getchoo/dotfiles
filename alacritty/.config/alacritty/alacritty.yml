@@ -1,0 +1,9 @@
+font:
+  normal:
+    family: Hack Nerd Font
+    style: Regular
+  size: 12
+
+
+import:
+  - /home/seth/.config/alacritty/dracula-alacritty/dracula.yml

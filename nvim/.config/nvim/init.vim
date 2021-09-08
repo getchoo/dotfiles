@@ -16,6 +16,10 @@ call plug#end()
 " settings
 colorscheme dracula
 set termguicolors
+set nocompatible
+set expandtab
+set tabstop=4
+set shiftwidth=4
 let g:lightline = {
       \ 'colorscheme': 'dracula',
       \ }

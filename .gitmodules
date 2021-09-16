@@ -16,3 +16,6 @@
 [submodule "shells/.local/share/zsh/fast-syntax-highlighting"]
 	path = shells/.local/share/zsh/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting.git
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sudo mount /dev/sdc2 /media/gamedisk1 -o 'uid=1000,gid=1000,rw,user,exec,umask=000 0 0'
-sudo mount /dev/sda2 /media/gamedisk2 -o 'uid=1000,gid=1000,rw,user,exec,umask=000 0 0'

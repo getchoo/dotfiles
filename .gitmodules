@@ -1,24 +1,9 @@
 [submodule "nvim/.local/share/nvim/site/autoload/vim-plug"]
 	path = nvim/.local/share/nvim/site/autoload/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
-[submodule "alacritty/.config/alacritty/nord-alacritty"]
-	path = alacritty/.config/alacritty/nord-alacritty
-	url = https://github.com/arcticicestudio/nord-alacritty.git
 [submodule "alacritty/.config/alacritty/dracula-alacritty"]
 	path = alacritty/.config/alacritty/dracula-alacritty
 	url = https://github.com/dracula/alacritty.git
-[submodule "tilix/.config/tilix/schemes/nord-tilix"]
-	path = tilix/.config/tilix/schemes/nord-tilix
-	url = https://github.com/arcticicestudio/nord-tilix.git
-[submodule "tilix/.config/tilix/schemes/dracula-tilix"]
-	path = tilix/.config/tilix/schemes/dracula-tilix
-	url = https://github.com/dracula/tilix.git
 [submodule "shells/.local/share/zsh/fast-syntax-highlighting"]
 	path = shells/.local/share/zsh/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting.git
-[submodule "tmux/.tmux/plugins/tpm"]
-	path = tmux/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
-[submodule "shells/.local/share/zsh/powerlevel10k"]
-	path = shells/.local/share/zsh/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git

@@ -1,4 +1,6 @@
 nvim/.config/nvim/plugged
 nvim/.local/share/nvim/shada
 nvim/.local/share/nvim/swap
-
+fish/.config/fish/completions
+fish/.config/fish/conf.d
+fish/.config/fish/fish_variables

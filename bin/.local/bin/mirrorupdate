@@ -1,0 +1,3 @@
+#!/bin/sh
+
+doas reflector --country US --protocol https --latest 20 --sort rate -n 5 --save /etc/pacman.d/mirrorlist

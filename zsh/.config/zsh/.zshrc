@@ -38,7 +38,7 @@ alias ls='exa'
 alias la='ls -a'
 alias g='git'
 
-source $HOME/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source "$HOME/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 

@@ -4,7 +4,6 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 #
 # g3tchoo's zshrc
 #
@@ -30,6 +29,7 @@ SAVEHIST=1000
 # defaults
 export EDITOR='nvim'
 export VISUAL='nvim'
+export PAGER='moar'
 export TERM=xterm-256color
 
 # alias
@@ -38,9 +38,16 @@ alias ls='exa'
 alias la='ls -a'
 alias g='git'
 
-source "$HOME/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# antigen plugins
+if [[ -f /usr/share/zsh/share/antigen.zsh ]]; then
+  source /usr/share/zsh/share/antigen.zsh
+else
+  source "$HOME/.local/share/zsh/antigen.zsh"
+fi
+antigen bundle zdharma-continuum/fast-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen theme romkatv/powerlevel10k
+antigen apply
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

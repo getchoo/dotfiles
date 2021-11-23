@@ -5,3 +5,4 @@ fish/.config/fish/completions
 fish/.config/fish/conf.d
 fish/.config/fish/fish_variables
 zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zshrc.zwc

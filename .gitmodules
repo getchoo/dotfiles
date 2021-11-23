@@ -1,9 +1,3 @@
 [submodule "nvim/.local/share/nvim/site/autoload/vim-plug"]
 	path = nvim/.local/share/nvim/site/autoload/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
-[submodule "alacritty/.config/alacritty/dracula-alacritty"]
-	path = alacritty/.config/alacritty/dracula-alacritty
-	url = https://github.com/dracula/alacritty.git
-[submodule "zsh/.local/share/zsh/fast-syntax-highlighting"]
-	path = zsh/.local/share/zsh/fast-syntax-highlighting
-	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git

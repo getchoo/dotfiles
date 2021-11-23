@@ -1,16 +1,19 @@
 add_newline = false
 
-[line_break]
-disabled = true
+#[line_break]
+#disabled = true
 
 [username]
 disabled = false
 show_always = true
+style_user = "bold bright-purple"
 
 [hostname]
-ssh_only = false
+#ssh_only = false
+style = "bold bright-cyan"
 
 [cmd_duration]
 min_time = 10000
 show_milliseconds = false
 disabled = false
+style = "bold purple"

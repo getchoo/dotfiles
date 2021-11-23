@@ -38,16 +38,9 @@ alias ls='exa'
 alias la='ls -a'
 alias g='git'
 
-# antigen plugins
-if [[ -f /usr/share/zsh/share/antigen.zsh ]]; then
-  source /usr/share/zsh/share/antigen.zsh
-else
-  source "$HOME/.local/share/zsh/antigen.zsh"
-fi
-antigen bundle zdharma-continuum/fast-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen theme romkatv/powerlevel10k
-antigen apply
+# plugins
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

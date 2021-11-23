@@ -13,11 +13,12 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " settings
-set termguicolors
-set nocompatible
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set smartindent
+set incsearch
+set termguicolors
 syntax on
 filetype plugin indent on
 colorscheme dracula

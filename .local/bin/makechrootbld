@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+echo "creating arch chroot..."
+CHROOT=$(pwd)/chroot
+mkdir $CHROOT
+mkarchroot $CHROOT/root base-devel
+
+echo "upgrading chroot..."
+arch-nspawn $CHROOT/root pacman -Syu
+
+echo "building package..."
+makechrootpkg -c -u -T -r $CHROOT
+
+echo "removing chroot"
+sudo rm -rf $CHROOT
+
+echo "installing package"
+sudo pacman -U *.pkg*
+echo "DONE !"

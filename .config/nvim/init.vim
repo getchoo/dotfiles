@@ -12,7 +12,7 @@ Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'sickill/vim-monokai'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -36,9 +36,11 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " appearance
 syntax on
 filetype plugin indent on
-colorscheme monokai
+set termguicolors
+let base16colorspace=256
+colorscheme base16-tomorrow-night
 let g:lightline = {
-      \ 'colorscheme': 'monokai',
+      \ 'colorscheme': 'Tomorrow_Night',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
@@ -55,4 +57,5 @@ let g:coc_global_extensions = [
   \ 'coc-jedi',
   \ 'coc-rls',
   \ 'coc-clangd',
+  \ 'coc-java',
   \ ]

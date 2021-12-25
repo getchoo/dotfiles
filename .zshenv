@@ -7,3 +7,4 @@ fi
 export ZDOTDIR="$HOME/.config/zsh"
 export CARGO_HOME="$HOME/.local/share/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rustup"
+export GPG_TTY=$(tty)

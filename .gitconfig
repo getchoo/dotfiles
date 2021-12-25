@@ -1,7 +1,7 @@
 [user]
 	email = getchoo@tuta.io
 	name = seth
-	signingkey = 94BBEE86
+	signingkey = D31BD0D494BBEE86
 [commit]
 	gpgsign = true
 [gpg]

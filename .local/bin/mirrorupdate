@@ -1,3 +1,0 @@
-#!/bin/sh
-
-sudo reflector --country US --protocol https --latest 20 --sort rate -n 5 --save /etc/pacman.d/mirrorlist

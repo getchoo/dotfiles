@@ -1,41 +1,45 @@
 #
-# g3tchoo's zshrc
+# getchoo's zshrc
 #
 
-# completion 
-autoload -U compinit
+
+# zmodules
+autoload -U compinit promptinit
 zmodload zsh/complist
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select reshash true
 compinit
+promptinit
+prompt walters
 
 # options
-setopt autocd
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory
-set -o emacs
+setopt append_history
+setopt inc_append_history
+setopt share_history
+
+# binds
+bindkey -e
+
+## clear backbuffer with ctrl-l
+function clear-screen-and-scrollback() {
+    echoti civis >"$TTY"
+    printf '%b' '\e[H\e[2J' >"$TTY"
+    zle .reset-prompt
+    zle -R
+    printf '%b' '\e[3J' >"$TTY"
+    echoti cnorm >"$TTY"
+}
+
+zle -N clear-screen-and-scrollback
+bindkey '^L' clear-screen-and-scrollback
 
 # enable history
 HISTFILE="$HOME/.cache/zsh/history"
 HISTSIZE=100
 SAVEHIST=1000
 
-# defaults
-export EDITOR='nvim'
-export VISUAL='nvim'
-
-# alias
-alias vim='nvim'
+# aliases
 alias ls='exa'
-alias la='ls -a'
-alias g='git'
-alias dotfiles='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias orphans='pacman -Qtdq | sudo pacman -Rns -'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-eval $(starship init zsh)
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-#[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

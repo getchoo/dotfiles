@@ -1,7 +1,0 @@
-.config/nvim/plugged
-.local/share/nvim/shada
-.local/share/nvim/swap
-.config/fish/completions
-.config/fish/conf.d
-.config/fish/fish_variables
-.config/zsh/.zcompdump

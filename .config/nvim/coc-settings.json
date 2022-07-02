@@ -1,0 +1,18 @@
+{
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh",
+        "PKGBUILD"
+      ]
+    }
+  },
+  "python.linting.flake8Enabled": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json"
+  ]
+}

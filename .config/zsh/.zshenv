@@ -11,12 +11,5 @@ if [[ -d "$HOME/.local/bin" ]]; then
   export PATH
 fi
 
-# default programs
-export EDITOR='nvim'
-export VISUAL='nvim'
-export GPG_TTY=$TTY
-
-# paths
-export ZDOTDIR="$HOME/.config/zsh"
-export CARGO_HOME="$HOME/.local/share/cargo"
-export RUSTUP_HOME="$HOME/.local/share/rustup"
+source "$HOME/.config/shell/profile"
+ZDOTDIR="$XDG_CONFIG_HOME/zsh"

@@ -9,11 +9,9 @@ then
         export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# default programs
-export EDITOR='nvim'
-export VISUAL='nvim'
-export GPG_TTY=$TTY
+source "$HOME/.config/shell/profile"
 
-# paths
-export CARGO_HOME="$HOME/.local/share/cargo"
-export RUSTUP_HOME="$HOME/.local/share/rustup"
+#if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
+#then
+#	exec fish
+#fi

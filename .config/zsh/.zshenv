@@ -12,4 +12,3 @@ if [[ -d "$HOME/.local/bin" ]]; then
 fi
 
 source "$HOME/.config/shell/profile"
-ZDOTDIR="$XDG_CONFIG_HOME/zsh"

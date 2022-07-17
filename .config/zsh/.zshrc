@@ -33,9 +33,9 @@ zle -N clear-screen-and-scrollback
 bindkey '^L' clear-screen-and-scrollback
 
 # enable history
-HISTFILE="$HOME/.cache/zsh/history"
-HISTSIZE=100
-SAVEHIST=1000
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=20
+SAVEHIST=500
 
 # aliases
 alias ls='exa'

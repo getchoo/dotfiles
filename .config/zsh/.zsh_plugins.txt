@@ -1,0 +1,4 @@
+zsh-users/zsh-completions
+zdharma-continuum/fast-syntax-highlighting
+#zsh-users/zsh-autosuggestions
+romkatv/powerlevel10k

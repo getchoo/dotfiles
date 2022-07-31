@@ -2,16 +2,20 @@
 " getchoo's neovim config
 "
 
-" plugins
-call plug#begin()
+set nocompatible
 
-Plug 'itchyny/lightline.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'rose-pine/neovim', {'as': 'rose-pine'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+set runtimepath+=/home/seth/.local/share/dein/repos/github.com/Shougo/dein.vim
+call dein#begin('~/.local/share/dein')
 
-call plug#end()
+call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
+call dein#add('wsdjeg/dein-ui.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('joshdick/onedark.vim')
+call dein#add('arcticicestudio/nord-vim')
+call dein#add('rose-pine/neovim', {'name': 'rose-pine'})
+call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
+
+call dein#end()
 
 " coc settings
 "" use <tab> for trigger completion and navigate to the next complete item
@@ -42,9 +46,9 @@ set smartindent
 syntax on
 filetype plugin indent on
 set termguicolors
-colorscheme onedark
+colorscheme nord
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]

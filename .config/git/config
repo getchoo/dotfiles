@@ -6,5 +6,3 @@
 	gpgsign = true
 [gpg]
 	program = gpg
-[core]
-	pager = bat --style=changes

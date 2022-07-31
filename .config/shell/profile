@@ -10,21 +10,11 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 export EDITOR='nvim'
 export VISUAL='nvim'
 export GPG_TTY=$(tty)
-export AUR_PAGER='fff'
-export AUR_EXEC_PATH="$XDG_DATA_HOME/aurutils/lib:/usr/lib/aurutils"
-
-# flags
-export CFLAGS="-march=native -mtune=native -O3 -pipe -fno-plt -fexceptions \
-        -Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \
-        -fstack-clash-protection -fcf-protection"
-export CXXFLAGS="$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS"
-export LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
-export LTOFLAGS="-flto=12"
-export RUSTFLAGS="-C target-cpu=native -C opt-level=3"
-export MAKEFLAGS="-j12"
 
 # paths
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export ZPLUG_HOME="$XDG_DATA_HOME/zplug"
+#source "$CARGO_HOME/env"

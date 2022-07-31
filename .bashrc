@@ -15,8 +15,8 @@ shopt -s nocaseglob
 shopt -s no_empty_cmd_completion
 
 export HISTFILE="$XDG_STATE_HOME/bash/history"
-export HISTSIZE=20
-export HISTFILESIZE=500
+export HISTSIZE=200
+export HISTFILESIZE=1000
 
 # aliases
 alias ls='exa'

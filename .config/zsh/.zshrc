@@ -2,14 +2,35 @@
 # getchoo's zshrc
 #
 
+# plugins :)
+if ! [[ -e ${ZDOTDIR:-~}/.antidote ]]; then
+  git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+fi
+
+# source antidote and load plugins from `${ZDOTDIR:-~}/.zsh_plugins.txt`
+zhome=${ZDOTDIR:-$HOME}
+if [[ ! $zhome/.zsh_plugins.zsh -nt $zhome/.zsh_plugins.txt ]]; then
+  [[ -e $zhome/.antidote ]] \
+    || git clone --depth=1 https://github.com/mattmc3/antidote.git $zhome/.antidote
+  [[ -e $zhome/.zsh_plugins.txt ]] || touch $zhome/.zsh_plugins.txt
+  (
+    source $zhome/.antidote/antidote.zsh
+    antidote bundle <$zhome/.zsh_plugins.txt >$zhome/.zsh_plugins.zsh
+  )
+fi
+
+autoload -Uz $zhome/.antidote/functions/antidote
+
+source $zhome/.zsh_plugins.zsh
+unset zhome
 
 # zmodules
-autoload -U compinit promptinit
+autoload -U compinit #promptinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select reshash true
 compinit
-promptinit
-prompt walters
+#promptinit
+#prompt walters
 
 # options
 setopt append_history
@@ -34,12 +55,12 @@ bindkey '^L' clear-screen-and-scrollback
 
 # enable history
 HISTFILE="$XDG_STATE_HOME/zsh/history"
-HISTSIZE=20
-SAVEHIST=500
+HISTSIZE=200
+SAVEHIST=1000
 
 # aliases
 alias ls='exa'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# plugins
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

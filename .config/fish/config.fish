@@ -22,18 +22,6 @@ function set_envvars
   set -gx EDITOR 'nvim'
   set -gx VISUAL 'nvim'
   set -gx GPG_TTY (tty)
-  set -gx AUR_PAGER 'fff'
-  set -gx AUR_EXEC_PATH "$XDG_DATA_HOME/aurutils/lib:/usr/lib/aurutils"
-
-  # flags
-  set -gx CFLAGS "-march=native -mtune=native -O3 -pipe -fno-plt -fexceptions \
-          -Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \
-          -fstack-clash-protection -fcf-protection"
-  set -gx CXXFLAGS "$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS"
-  set -gx LDFLAGS "-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
-  set -gx LTOFLAGS "-flto=12"
-  set -gx RUSTFLAGS "-C target-cpu=native -C opt-level=3"
-  set -gx MAKEFLAGS "-j12"
 
   # paths
   set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
@@ -44,7 +32,7 @@ function set_envvars
 end
 
 function load_plugins
-  starship init fish | source
+  #starship init fish | source
 end
 
 if status is-login
@@ -52,6 +40,4 @@ if status is-login
   load_plugins
 else if status is-interactive
   load_plugins
-else
-  set_envvars
 end

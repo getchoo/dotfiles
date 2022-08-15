@@ -1,80 +1,82 @@
 --
--- lsp settings using nvim-lspconfig & coq-nvim
+-- lsp settings using coq-nvim, null-ls, bufferline, nvim-tree, trouble, & telescope
 --
 
-local fn = vim.fn
-local cmd = vim.cmd
-local opt = vim.opt
+--- require lsp plugins
+require("nvim-tree").setup()
+require("alpha").setup(require("alpha.themes.dashboard").config)
+require("bufferline").setup()
+require("trouble").setup()
+require("telescope").setup()
+require("mason").setup()
+require("mason-lspconfig").setup()
+vim.opt.runtimepath:append("~/.local/share/nvim/mason/bin/")
+local lspconfig = require("lspconfig")
+local null_ls = require("null-ls")
 
+vim.g.coq_settings = { auto_start = "shut-up" }
 
-vim.g.coq_settings = { auto_start = 'shut-up' }
+--- mappings
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
---- Mappings.
---- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+--- setup lsp servers
+---- null-ls builtins shorthand
+local completion = null_ls.builtins.completion
+local diagnostics = null_ls.builtins.diagnostics
+local formatting = null_ls.builtins.formatting
 
---- Use an on_attach function to only map the following keys
---- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  ---- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  ---- Mappings.
-  ---- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-end
-
-local servers = { 'rust_analyzer', 'pyright', 'bashls' }
-for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup(require('coq').lsp_ensure_capabilities({
-    on_attach = on_attatch,
-    flags = lsp_flags
-  }))
-end
-
-require('lspconfig')['sumneko_lua'].setup(require('coq').lsp_ensure_capabilities({
-  on_attatch = on_attatch,
-  flags = lsp_flags,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = {'vim'},
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      }
-    },
-  },
-}))
-
-require('lint').linters_by_ft = {
-  python = {'flake8',}
+local servers = { "rust_analyzer", "pyright", "bashls" } -- lspconfig servers
+local sources = { -- null-ls sources
+	diagnostics.alex,
+	diagnostics.codespell,
+	diagnostics.flake8,
+	formatting.black,
+	formatting.codespell,
+	formatting.prettier,
+	formatting.rustfmt,
+	formatting.stylua,
 }
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require('lint').try_lint()
-  end,
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup(require("coq").lsp_ensure_capabilities({}))
+end
+
+lspconfig["sumneko_lua"].setup(require("coq").lsp_ensure_capabilities({
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				globals = { "vim" }, -- ignore regular vim errors
+			},
+			format = {
+				enable = false,
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+		},
+	},
+}))
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.formatting_sync()
+				end,
+			})
+		end
+	end,
+	sources = sources,
 })

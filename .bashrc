@@ -15,12 +15,11 @@ shopt -s nocaseglob
 shopt -s no_empty_cmd_completion
 
 export HISTFILE="$XDG_STATE_HOME/bash/history"
-export HISTSIZE=200
+export HISTSIZE=100
 export HISTFILESIZE=1000
 
-# aliases
-alias ls='exa'
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# source aliases
+source "$XDG_CONFIG_HOME/shell/aliases"
 
 # prompt
 PS1='[\u@\h \W]\$ '

@@ -16,3 +16,7 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+dir_colors="$XDG_CONFIG_HOME/shell/dir_colors"
+[[ -f "$dir_colors" ]] && eval $(dircolors "$dir_colors")
+unset dir_colors

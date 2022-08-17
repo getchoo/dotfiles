@@ -21,53 +21,49 @@ end
 
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
+	-- comsetic plugins
+	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
+	use("arcticicestudio/nord-vim")
+	use({ "rose-pine/neovim", as = "rose-pine" })
+	-- lsp plugins
+	use("neovim/nvim-lspconfig")
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig")
+	use("WhoIsSethDaniel/mason-tool-installer.nvim")
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	})
-	use("kyazdani42/nvim-tree.lua")
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig")
-	use("neovim/nvim-lspconfig")
-	use({ "ms-jpq/coq_nvim", run = "python3 -m coq deps" })
+	use("ms-jpq/coq_nvim")
 	use("ms-jpq/coq.artifacts")
 	use("ms-jpq/coq.thirdparty")
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
-	use({
-		"folke/trouble.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	})
+	use("kyazdani42/nvim-tree.lua")
 	use({
 		"akinsho/bufferline.nvim",
 		tag = "v2.*",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	})
 	use({
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		requires = { "nvim-lua/plenary.nvim" },
+		"folke/trouble.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
 	})
-	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
-	use("arcticicestudio/nord-vim")
-	use({ "rose-pine/neovim", as = "rose-pine" })
+	use({
+		"liuchengxu/vim-clap",
+		run = function()
+			vim.cmd([[:Clap install-binary!]])
+		end,
+	})
 
 	if Packer_bootstrap then
 		require("packer").sync()
 	end
 end)
-
-require("nvim-treesitter.configs").setup({
-	auto_install = true,
-})
 
 require("lualine").setup({
 	options = {

@@ -1,43 +1,26 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #
 # getchoo's zshrc
 #
 
+antidote_dir="${ZDOTDIR}/.antidote"
 # plugins :)
-if ! [[ -e ${ZDOTDIR:-~}/.antidote ]]; then
-  git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+if [[ ! -d ${antidote_dir} ]]
+then
+  git clone https://github.com/mattmc3/antidote.git ${antidote_dir}/.antidote
 fi
 
-# source antidote and load plugins from `${ZDOTDIR:-~}/.zsh_plugins.txt`
-zhome=${ZDOTDIR:-$HOME}
-if [[ ! $zhome/.zsh_plugins.zsh -nt $zhome/.zsh_plugins.txt ]]; then
-  [[ -e $zhome/.antidote ]] \
-    || git clone --depth=1 https://github.com/mattmc3/antidote.git $zhome/.antidote
-  [[ -e $zhome/.zsh_plugins.txt ]] || touch $zhome/.zsh_plugins.txt
-  (
-    source $zhome/.antidote/antidote.zsh
-    antidote bundle <$zhome/.zsh_plugins.txt >$zhome/.zsh_plugins.zsh
-  )
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-autoload -Uz $zhome/.antidote/functions/antidote
-
-source $zhome/.zsh_plugins.zsh
-unset zhome
+source ${antidote_dir}/antidote.zsh && antidote load
+unset antidote_dir
 
 # zmodules
-autoload -U compinit #promptinit
+autoload -U compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select reshash true
 compinit
-#promptinit
-#prompt walters
 
 # options
 setopt append_history
@@ -62,12 +45,11 @@ bindkey '^L' clear-screen-and-scrollback
 
 # enable history
 HISTFILE="$XDG_STATE_HOME/zsh/history"
-HISTSIZE=200
+HISTSIZE=100
 SAVEHIST=1000
 
-# aliases
-alias ls='exa'
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# source aliases
+source "$XDG_CONFIG_HOME/shell/aliases"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

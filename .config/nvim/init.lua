@@ -8,15 +8,15 @@ local opt = vim.opt
 require("getchoo.plugins")
 require("getchoo.lsp")
 
--- options
+-- text options
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true
 opt.wrap = false
-opt.termguicolors = true
 
 -- appearance
-cmd([[syntax on]])
-cmd([[filetype plugin indent on]])
+opt.syntax = "on"
 cmd([[colorscheme nord]])
+opt.termguicolors = true
+opt.relativenumber = true

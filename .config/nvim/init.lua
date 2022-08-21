@@ -5,6 +5,7 @@
 local cmd = vim.cmd
 local opt = vim.opt
 
+require("getchoo.ftdetect")
 require("getchoo.plugins")
 require("getchoo.lsp")
 

@@ -12,7 +12,7 @@ require("mason-tool-installer").setup(config.mason_tool_installer)
 vim.opt.runtimepath:append("~/.local/share/nvim/mason/bin/")
 
 for server, settings in pairs(config.lsp_servers) do
-	lspconfig[server].setup(require("coq").lsp_ensure_capabilities(settings))
+  lspconfig[server].setup(require("coq").lsp_ensure_capabilities(settings))
 end
 
 null_ls.setup(config.null_ls)

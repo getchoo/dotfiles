@@ -6,14 +6,15 @@ antidote_dir="${ZDOTDIR}/.antidote"
 # plugins :)
 if [[ ! -d ${antidote_dir} ]]
 then
-  git clone https://github.com/mattmc3/antidote.git ${antidote_dir}/.antidote
+  git clone https://github.com/mattmc3/antidote.git ${antidote_dir}
 fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ${antidote_dir}/antidote.zsh && antidote load
+source $antidote_dir/antidote.zsh
+antidote load
 unset antidote_dir
 
 # zmodules

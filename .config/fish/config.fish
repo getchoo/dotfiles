@@ -26,9 +26,6 @@ function set_envvars
 
   # paths
   set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
-  if test -d "$CARGO_HOME"
-    fish_add_path "$CARGO_HOME/bin"
-  end
   set -gx RUSTUP_HOME "$XDG_DATA_HOME/rustup"
   set -gx LESSHISTFILE "$XDG_STATE_HOME/less/history"
   set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
@@ -36,7 +33,6 @@ function set_envvars
 end
 
 function load_plugins
-  #starship init fish | source
   if not test -f "$XDG_CONFIG_HOME/fish/functions/fisher.fish"
     echo 'bootstrapping fisher'
     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher

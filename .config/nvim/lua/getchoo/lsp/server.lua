@@ -2,6 +2,7 @@
 -- initialize lsp servers
 --
 
+local cmp = require("cmp")
 local lspconfig = require("lspconfig")
 local null_ls = require("null-ls")
 local config = require("getchoo.lsp.config")
@@ -12,7 +13,8 @@ require("mason-tool-installer").setup(config.mason_tool_installer)
 vim.opt.runtimepath:append("~/.local/share/nvim/mason/bin/")
 
 for server, settings in pairs(config.lsp_servers) do
-  lspconfig[server].setup(require("coq").lsp_ensure_capabilities(settings))
+  lspconfig[server].setup(settings)
 end
 
+cmp.setup(config.cmp)
 null_ls.setup(config.null_ls)

@@ -1,0 +1,34 @@
+-- wrapper for all configs
+local cmp = require("getchoo.lsp.config.cmp")
+local lsp_config = require("getchoo.lsp.config.lsp_config")
+local mason = require("getchoo.lsp.config.mason")
+local null_ls = require("getchoo.lsp.config.null_ls")
+
+local M = {}
+
+M.bufferline = {
+  options = {
+    numbers = "ordinal",
+    diagnostics = "nvim_lsp",
+    always_show_bufferline = false,
+  },
+}
+
+M.cmp = cmp.config
+
+M.lsp_servers = lsp_config.servers
+
+M.mason_tool_installer = mason.mason_tool_installer
+M.mason_lsp = mason.mason_lsp_config
+
+M.null_ls = null_ls.config
+
+M.tree = {}
+
+M.treesitter = {
+  auto_install = true,
+}
+
+M.trouble = {}
+
+return M

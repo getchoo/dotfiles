@@ -19,7 +19,7 @@ M.cmp = cmp.config
 M.lsp_servers = lsp_config.servers
 
 M.mason_tool_installer = mason.mason_tool_installer
-M.mason_lsp = mason.mason_lsp_config
+M.mason_lspconfig = mason.mason_lspconfig
 
 M.null_ls = null_ls.config
 

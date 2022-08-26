@@ -8,7 +8,7 @@ local null_ls = require("null-ls")
 local config = require("getchoo.lsp.config")
 
 require("mason").setup()
-require("mason-lspconfig").setup(config.mason_lsp)
+require("mason-lspconfig").setup(config.mason_lspconfig)
 require("mason-tool-installer").setup(config.mason_tool_installer)
 vim.opt.runtimepath:append("~/.local/share/nvim/mason/bin/")
 

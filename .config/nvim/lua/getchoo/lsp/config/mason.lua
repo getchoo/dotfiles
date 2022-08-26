@@ -7,7 +7,7 @@ M.mason_tool_installer = {
   ensure_installed = sources.mason,
 }
 
-M.mason_lsp = {
+M.mason_lspconfig = {
   automatic_installation = true,
 }
 

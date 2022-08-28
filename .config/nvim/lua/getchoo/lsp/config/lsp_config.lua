@@ -8,8 +8,8 @@ local on_attach = function(client, bufnr)
 end
 
 local all_config = {
-  on_attach = on_attach,
   capabilities = cmp.capabilities,
+  on_attach = on_attach,
 }
 
 local servers = {}
@@ -18,6 +18,7 @@ for _, server in ipairs(sources.lsp_servers) do
 end
 
 servers["sumneko_lua"] = {
+  capabilities = cmp.capabilities,
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -29,9 +30,6 @@ servers["sumneko_lua"] = {
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
       },
     },
   },

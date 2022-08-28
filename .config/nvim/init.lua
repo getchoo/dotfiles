@@ -18,6 +18,6 @@ opt.wrap = false
 
 -- appearance
 opt.syntax = "on"
-cmd([[colorscheme nord]])
+cmd("colorscheme nord")
 opt.termguicolors = true
 opt.relativenumber = true

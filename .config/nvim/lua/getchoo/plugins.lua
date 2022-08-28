@@ -16,7 +16,7 @@ if fn.empty(fn.glob(packer_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     packer_path,
   })
-  cmd([[packadd packer.nvim]])
+  cmd("packadd packer.nvim")
 end
 
 require("packer").startup(function(use)
@@ -25,16 +25,11 @@ require("packer").startup(function(use)
   -- comsetic plugins
   use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 
-  use("arcticicestudio/nord-vim")
+  use("shaunsingh/nord.nvim")
 
   use({ "rose-pine/neovim", as = "rose-pine" })
 
-  use({
-    "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.dashboard").config)
-    end,
-  })
+  use("glepnir/dashboard-nvim")
 
   -- lsp plugins
   use("neovim/nvim-lspconfig")
@@ -46,7 +41,7 @@ require("packer").startup(function(use)
 
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig")
-  use("WhoIsSethDaniel/mason-tool-installer.nvim")
+  use("whoissethdaniel/mason-tool-installer.nvim")
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -55,11 +50,10 @@ require("packer").startup(function(use)
     end,
   })
 
+  use("hrsh7th/nvim-cmp")
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-buffer")
   use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-cmdline")
-  use("hrsh7th/nvim-cmp")
   use("hrsh7th/cmp-vsnip")
   use("hrsh7th/vim-vsnip")
   use("L3MON4D3/LuaSnip")
@@ -68,8 +62,7 @@ require("packer").startup(function(use)
   use("kyazdani42/nvim-tree.lua")
 
   use({
-    "akinsho/bufferline.nvim",
-    tag = "v2.*",
+    "romgrk/barbar.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
 
@@ -77,18 +70,24 @@ require("packer").startup(function(use)
     "folke/trouble.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
-
   use({
-    "liuchengxu/vim-clap",
-    run = function()
-      vim.cmd([[:Clap install-binary!]])
-    end,
+    "nvim-telescope/telescope.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
   })
+
+  use("lewis6991/gitsigns.nvim")
+  use("rcarriga/nvim-notify")
 
   if Packer_bootstrap then
     require("packer").sync()
   end
 end)
+
+-- setup nord colorscheme
+vim.g.nord_borders = true
+vim.g.nord_disable_background = true
+vim.g.nord_italic = false
+require("nord").set()
 
 require("lualine").setup({
   options = {

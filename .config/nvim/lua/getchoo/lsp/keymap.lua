@@ -13,28 +13,28 @@ set("n", "]d", vim.diagnostic.goto_next)
 set("n", "<space>q", vim.diagnostic.setloclist)
 
 set("n", "<space>f", function()
-  vim.cmd([[:Clap]])
+  vim.cmd("Telescope")
 end)
 
 set("n", "<leader>t", function()
-  vim.cmd([[:NvimTreeToggle]])
+  vim.cmd("NvimTreeToggle")
 end)
 
 set("n", "<space>t", function()
-  vim.cmd([[:TroubleToggle]])
+  vim.cmd("TroubleToggle")
 end)
 
-local bufferline = require("bufferline")
 for i = 1, 9 do
   set("n", "<leader>" .. i, function()
-    bufferline.go_to_buffer(i, true)
+    local cmd = "BufferGoto " .. i
+    vim.cmd(cmd)
   end)
 end
 
 set("n", "<leader>p", function()
-  bufferline.pick_buffer()
+  vim.cmd("BufferPick")
 end)
 
 set("n", "<leader>q", function()
-  bufferline.close_buffer_with_pick()
+  vim.cmd("BufferClose")
 end)

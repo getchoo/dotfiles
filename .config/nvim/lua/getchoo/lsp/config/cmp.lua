@@ -21,10 +21,6 @@ M.config = {
     end,
   },
   mapping = mapping.preset.insert({
-    ["<C-Space>"] = mapping.complete(),
-    ["<CR>"] = mapping.confirm({
-      select = true,
-    }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -54,8 +50,8 @@ M.config = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "vsnip" },
-  }, {
     { name = "buffer" },
+    { name = "path" },
   }),
 }
 

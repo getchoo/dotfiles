@@ -7,11 +7,36 @@ local null_ls = require("getchoo.lsp.config.null_ls")
 local M = {}
 
 M.bufferline = {
-  options = {
-    numbers = "ordinal",
-    diagnostics = "nvim_lsp",
-    always_show_bufferline = false,
+  animation = true,
+  auto_hide = true,
+  icons = true,
+  maximum_padding = 2,
+  semantic_letters = true,
+}
+
+local db = require("dashboard")
+db.custom_center = {
+  {
+    desc = "find a file",
+    action = "Telescope fd",
   },
+  {
+    desc = "update plugins",
+    action = "PackerSync",
+  },
+  {
+    desc = "update treesitter parsers",
+    actions = "TSUpdate",
+  },
+}
+
+db.custom_header = {
+  " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+  " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+  " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+  " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+  " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+  " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 }
 
 M.cmp = cmp.config
@@ -27,6 +52,10 @@ M.tree = {}
 
 M.treesitter = {
   auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
 }
 
 M.trouble = {}

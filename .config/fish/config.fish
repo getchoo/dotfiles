@@ -35,8 +35,9 @@ end
 function load_plugins
   if not test -f "$XDG_CONFIG_HOME/fish/functions/fisher.fish"
     echo 'bootstrapping fisher'
-    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    curl -sL https://git.io/fisher | source && fisher update
   end
+  fish_logo
 end
 
 if status is-login

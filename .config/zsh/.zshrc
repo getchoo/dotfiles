@@ -2,30 +2,49 @@
 # getchoo's zshrc
 #
 
-antidote_dir="${ZDOTDIR}/.antidote"
-# plugins :)
-if [[ ! -d ${antidote_dir} ]]
+# bootstrap antidote
+antidote_dir="$ZDOTDIR/.antidote"
+plugins_file="$ZDOTDIR/.zsh_plugins.txt"
+static_file="$ZDOTDIR/.zsh_plugins.zsh"
+zstyle ':antidote:bundle' use-friendly-names 'yes' # don't use ugly dirs
+
+if [[ ! "$static_file" -nt "$plugins_file" ]]
 then
-  git clone https://github.com/mattmc3/antidote.git ${antidote_dir}
+  [[ ! -e "$antidote_dir" ]] && \
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"
+
+  source "$antidote_dir/antidote.zsh"
+  [[ ! -e "$plugins_file" ]] && touch "$plugins_file"
+  antidote bundle < "$plugins_file" > "$static_file"
 fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $antidote_dir/antidote.zsh
-antidote load
-unset antidote_dir
-
 # zmodules
-autoload -U compinit
+autoload -U compinit colors "$antidote_dir/antidote.zsh"
+colors
 zmodload zsh/complist
 zstyle ':completion:*' menu select reshash true
-compinit
+zstyle ':completion::complete:*' use-cache on
+
+# load plugins
+source "$static_file"
+unset antidote_dir
+
+# compile completion
+zdump="$ZDOTDIR/.zcompdump"
+compinit -d "$zdump"
+if [[ ! "$zdump.zwc" -nt "$zdump" ]]
+then
+  zcompile "$zdump"
+fi
 
 # options
 setopt append_history
 setopt inc_append_history
+setopt prompt_subst
 setopt share_history
 
 # binds

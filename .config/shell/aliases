@@ -1,2 +1,2 @@
-alias ls='ls --color=auto'
+alias ls='exa --icons'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

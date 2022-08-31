@@ -76,7 +76,7 @@ require("packer").startup(function(use)
   })
 
   use("lewis6991/gitsigns.nvim")
-  use("rcarriga/nvim-notify")
+  use("ggandor/lightspeed.nvim")
 
   if Packer_bootstrap then
     require("packer").sync()

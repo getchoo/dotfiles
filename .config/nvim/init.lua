@@ -20,4 +20,3 @@ opt.wrap = false
 opt.syntax = "on"
 cmd("colorscheme nord")
 opt.termguicolors = true
-opt.relativenumber = true

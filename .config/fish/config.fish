@@ -2,7 +2,6 @@
 # getchoo's config.fish
 #
 
-
 function set_envvars
   # add user bin directory to path
   if test -d "$HOME/.local/bin"

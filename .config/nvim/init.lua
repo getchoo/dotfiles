@@ -5,9 +5,14 @@
 local cmd = vim.cmd
 local opt = vim.opt
 
-require("getchoo.ftdetect")
+vim.g.use_lsp_plugins = true
+vim.g.use_mason = false
+
 require("getchoo.plugins")
-require("getchoo.lsp")
+if vim.g.use_lsp_plugins then
+  require("getchoo.ftdetect")
+  require("getchoo.lsp")
+end
 
 -- text options
 opt.tabstop = 2

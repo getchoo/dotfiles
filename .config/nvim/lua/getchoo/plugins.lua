@@ -31,52 +31,57 @@ require("packer").startup(function(use)
 
   use("glepnir/dashboard-nvim")
 
-  -- lsp plugins
-  use("neovim/nvim-lspconfig")
-
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  })
-
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig")
-  use("whoissethdaniel/mason-tool-installer.nvim")
-
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = function()
-      require("nvim-treesitter.install").update({ with_sync = true })
-    end,
-  })
-
-  use("hrsh7th/nvim-cmp")
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-vsnip")
-  use("hrsh7th/vim-vsnip")
-  use("L3MON4D3/LuaSnip")
-  use("saadparwaiz1/cmp_luasnip")
-
-  use("kyazdani42/nvim-tree.lua")
-
+  -- general use plugins
   use({
     "romgrk/barbar.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
 
-  use({
-    "folke/trouble.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  })
-
-  use("lewis6991/gitsigns.nvim")
   use("ggandor/lightspeed.nvim")
+  use("kyazdani42/nvim-tree.lua")
+
+  -- lsp plugins
+  if vim.g.use_lsp_plugins then
+    use("neovim/nvim-lspconfig")
+
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+    })
+
+    if vim.g.use_mason then
+      use("williamboman/mason.nvim")
+      use("williamboman/mason-lspconfig")
+      use("whoissethdaniel/mason-tool-installer.nvim")
+    end
+
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      run = function()
+        require("nvim-treesitter.install").update({ with_sync = true })
+      end,
+    })
+
+    use("hrsh7th/nvim-cmp")
+    use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/cmp-buffer")
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-vsnip")
+    use("hrsh7th/vim-vsnip")
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
+
+    use({
+      "folke/trouble.nvim",
+      requires = { "kyazdani42/nvim-web-devicons" },
+    })
+    use({
+      "nvim-telescope/telescope.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+    })
+
+    use("lewis6991/gitsigns.nvim")
+  end
 
   if Packer_bootstrap then
     require("packer").sync()
@@ -89,9 +94,7 @@ vim.g.nord_disable_background = true
 vim.g.nord_italic = false
 require("nord").set()
 
-require("lualine").setup({
-  options = {
-    theme = "nord",
-  },
-  extensions = { "nvim-tree" },
-})
+local config = require("getchoo.config")
+require("bufferline").setup(config.bufferline)
+require("lualine").setup(config.lualine)
+require("nvim-tree").setup(config.tree)

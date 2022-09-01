@@ -16,25 +16,6 @@ set("n", "<space>f", function()
   vim.cmd("Telescope")
 end)
 
-set("n", "<leader>t", function()
-  vim.cmd("NvimTreeToggle")
-end)
-
 set("n", "<space>t", function()
   vim.cmd("TroubleToggle")
-end)
-
-for i = 1, 9 do
-  set("n", "<leader>" .. i, function()
-    local cmd = "BufferGoto " .. i
-    vim.cmd(cmd)
-  end)
-end
-
-set("n", "<leader>p", function()
-  vim.cmd("BufferPick")
-end)
-
-set("n", "<leader>q", function()
-  vim.cmd("BufferClose")
 end)

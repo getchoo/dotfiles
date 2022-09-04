@@ -14,15 +14,16 @@ source "${HOME}/.bash_profile"
 
 # options
 shopt -s cdspell
+shopt -s checkjobs
 shopt -s checkwinsize
-shopt -s cmdhist
+shopt -s dirspell
 shopt -s globstar
-shopt -s nocaseglob
+shopt -s histappend
 shopt -s no_empty_cmd_completion
 
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
-export HISTSIZE=100
 export HISTFILESIZE=1000
+export HISTSIZE=100
 
 # source aliases
 source "${XDG_CONFIG_HOME}/shell/aliases"

@@ -3,4 +3,5 @@
 romkatv/powerlevel10k path:powerlevel10k.zsh-theme
 
 zsh-users/zsh-completions kind:fpath path:src
-zsh-users/zsh-syntax-highlighting path:zsh-syntax-highlighting.plugin.zsh
+zsh-users/zsh-autosuggestions path:zsh-autosuggestions.zsh
+zdharma-continuum/fast-syntax-highlighting path:fast-syntax-highlighting.plugin.zsh

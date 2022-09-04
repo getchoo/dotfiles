@@ -23,13 +23,11 @@ require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- comsetic plugins
-  use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
+  use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
 
   use("shaunsingh/nord.nvim")
 
   use({ "rose-pine/neovim", as = "rose-pine" })
-
-  use("glepnir/dashboard-nvim")
 
   -- general use plugins
   use({
@@ -81,6 +79,7 @@ require("packer").startup(function(use)
     })
 
     use("lewis6991/gitsigns.nvim")
+    use("editorconfig/editorconfig-vim")
   end
 
   if Packer_bootstrap then

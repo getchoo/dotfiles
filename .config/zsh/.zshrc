@@ -25,42 +25,50 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # zmodules
-autoload -Uz compinit colors "${antidote_dir}/antidote.zsh"
+autoload -Uz bashcompinit compinit colors "${antidote_dir}/antidote.zsh"
 colors
 zmodload zsh/zutil
 zmodload zsh/complist
-zstyle ':completion::*' completer _extensions _complete _approximate
+zstyle ':completion::*' add-space 'false'
+zstyle ':completion::*' completer _ignored _expand_alias _expand _extensions _complete _approximate
 zstyle ':completion::*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-dirs-first true
-zstyle ':completion:*' menu select
-zstyle ':completion::*' use-cache on
+zstyle ':completion:*' menu 'true' 'select'
+zstyle ':completion:*' single-ignored 'show'
+zstyle ':completion:*' squeeze-slashes 'true'
+zstyle ':completion::*' use-cache 'true'
 zstyle ':completion::*' cache-path "$zdump"
 
 # compile completion
+bashcompinit
 compinit -d "$zdump"
 if [[ ! "${zdump}.zwc" -nt "$zdump" ]]
 then
   zcompile "$zdump"
 fi
+unset zdump
 
 # load plugins
 source "$static_file"
+unset antidote_dir plugins_file static_file
+eval "$(zoxide init zsh)"
 
 # options
+unsetopt beep
 unsetopt hist_beep
+unsetopt ignore_braces
 unsetopt list_beep
+setopt always_to_end
+setopt emacs
 setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt inc_append_history
 setopt prompt_subst
 setopt share_history
 
-# binds
-bindkey -e
-
-## clear backbuffer with ctrl-l
+# clear backbuffer with ctrl-l
 function clear-screen-and-scrollback() {
     echoti civis >"$TTY"
     printf '%b' '\e[H\e[2J' >"$TTY"

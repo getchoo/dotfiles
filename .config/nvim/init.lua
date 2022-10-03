@@ -23,5 +23,6 @@ opt.wrap = false
 
 -- appearance
 opt.syntax = "on"
+cmd("filetype plugin indent on")
 cmd("colorscheme nord")
 opt.termguicolors = true

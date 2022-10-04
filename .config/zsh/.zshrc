@@ -2,30 +2,23 @@
 # getchoo's zshrc
 #
 
-local zdump="${XDG_CACHE_HOME}/zsh/zcompdump"
-local antidote_dir="${ZDOTDIR}/.antidote"
-local plugins_file="${ZDOTDIR}/.zsh_plugins.txt"
-local static_file="${ZDOTDIR}/.zsh_plugins.zsh"
-zstyle ':antidote:bundle' use-friendly-names 'yes' # don't use ugly dirs
-
-# recompile static file when needed
-if [[ ! "$static_file" -nt "$plugins_file" ]]
-then
-  # bootstrap antidote
-  [[ ! -e "$antidote_dir/antidote.zsh" ]] && \
-    git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"
-
-  source "${antidote_dir}/antidote.zsh"
-  [[ ! -e "$plugins_file" ]] && touch "$plugins_file"
-  antidote bundle < "$plugins_file" > "$static_file"
-fi
-
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+local zdump="${XDG_CACHE_HOME}/zsh/zcompdump"
+local antidote_dir="${ZDOTDIR}/.antidote"
+
+  # bootstrap antidote
+if [[ ! -e "$antidote_dir/antidote.zsh" ]]
+then
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"
+fi
+
+source "${antidote_dir}/antidote.zsh"
+
 # zmodules
-autoload -Uz bashcompinit compinit colors "${antidote_dir}/antidote.zsh"
+autoload -Uz bashcompinit compinit colors
 colors
 zmodload zsh/zutil
 zmodload zsh/complist
@@ -34,7 +27,7 @@ zstyle ':completion::*' completer _ignored _expand_alias _expand _extensions _co
 zstyle ':completion::*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu 'true' 'select'
-zstyle ':completion:*' single-ignored 'show'
+zstyle ':completion:*' single-ignored 'file'
 zstyle ':completion:*' squeeze-slashes 'true'
 zstyle ':completion::*' use-cache 'true'
 zstyle ':completion::*' cache-path "$zdump"
@@ -49,8 +42,8 @@ fi
 unset zdump
 
 # load plugins
-source "$static_file"
-unset antidote_dir plugins_file static_file
+antidote load
+unset antidote_dir
 eval "$(zoxide init zsh)"
 
 # options

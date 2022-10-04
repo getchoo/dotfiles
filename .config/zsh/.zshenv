@@ -11,3 +11,5 @@ if [[ -d "${HOME}/.local/bin" ]]; then
   path=("${HOME}/.local/bin" "$path[@]")
   export PATH
 fi
+
+zstyle ':antidote:bundle' use-friendly-names 'yes' # don't use ugly dirs

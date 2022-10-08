@@ -13,7 +13,7 @@ function set_envvars
 end
 
 function load_plugins
-  if not test -f "$XDG_CONFIG_HOME/fish/functions/fisher.fish"
+  if not functions -q fisher
     echo 'bootstrapping fisher'
     curl -sL https://git.io/fisher | source && fisher update
   end
@@ -21,10 +21,14 @@ function load_plugins
   if command -q zoxide
     zoxide init fish | source
   end
+
+  if command -q starship
+    starship init fish | source
+  end
 end
 
-if status is-login
-  set_envvars
-else if status is-interactive
+if status is-interactive
   load_plugins
+else
+  set_envvars
 end

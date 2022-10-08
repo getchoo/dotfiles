@@ -18,16 +18,15 @@ fi
 source "${antidote_dir}/antidote.zsh"
 
 # zmodules
-autoload -Uz bashcompinit compinit colors
-colors
+autoload -Uz bashcompinit compinit # colors promptinit
+# colors
+# promptinit; prompt walters
 zmodload zsh/zutil
 zmodload zsh/complist
 zstyle ':completion::*' add-space 'false'
-zstyle ':completion::*' completer _ignored _expand_alias _expand _extensions _complete _approximate
 zstyle ':completion::*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu 'true' 'select'
-zstyle ':completion:*' single-ignored 'file'
+zstyle ':completion:*' menu 'select'
 zstyle ':completion:*' squeeze-slashes 'true'
 zstyle ':completion::*' use-cache 'true'
 zstyle ':completion::*' cache-path "$zdump"
@@ -43,8 +42,8 @@ unset zdump
 
 # load plugins
 antidote load
+## eval "$(zoxide init zsh)"
 unset antidote_dir
-eval "$(zoxide init zsh)"
 
 # options
 unsetopt beep

@@ -3,9 +3,6 @@
 # getchoo's bashrc
 #
 
-# always source profile
-source "${HOME}/.bash_profile"
-
 # drop into fish
 ## if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
 ## then

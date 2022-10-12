@@ -23,13 +23,17 @@ autoload -Uz bashcompinit compinit # colors promptinit
 # promptinit; prompt walters
 zmodload zsh/zutil
 zmodload zsh/complist
-zstyle ':completion::*' add-space 'false'
 zstyle ':completion::*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu 'select'
 zstyle ':completion:*' squeeze-slashes 'true'
 zstyle ':completion::*' use-cache 'true'
 zstyle ':completion::*' cache-path "$zdump"
+
+# load plugins
+antidote load
+## eval "$(zoxide init zsh)"
+unset antidote_dir
 
 # compile completion
 bashcompinit
@@ -40,10 +44,6 @@ then
 fi
 unset zdump
 
-# load plugins
-antidote load
-## eval "$(zoxide init zsh)"
-unset antidote_dir
 
 # options
 unsetopt beep

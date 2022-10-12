@@ -1,10 +1,10 @@
 # xdg dirs
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_STATE_HOME="${HOME}/.local/state"
-export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-${HOME}/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
-export XDG_CONFIG_DIRS="/etc/xdg"
+export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
 
 # default programs
 export EDITOR='nvim'
@@ -17,19 +17,6 @@ export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
-
-# flags
-export CFLAGS="-O2 -flto=auto -ffat-lto-objects -fexceptions \
-  -g -grecord-gcc-switches -pipe -Wall -Werror=format-security \
-  -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS \
-  -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong \
-  -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic \
-  -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
-export CXXFLAGS="$CFLAGS"
-export LDFLAGS="-Wl,-z,relro -Wl,--as-needed -Wl,-z,now \
-  -specs=/usr/lib/rpm/redhat/redhat-hardened-ld \
-  -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1"
-MAKEFLAGS="-j12"
 
 dir_colors="${XDG_CONFIG_HOME}/shell/dir_colors"
 [[ -f "$dir_colors" ]] && eval $(dircolors "$dir_colors")

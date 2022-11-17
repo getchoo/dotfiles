@@ -17,4 +17,4 @@ set viminfofile=$XDG_STATE_HOME/vim/viminfo
 
 set tabstop=2
 set shiftwidth=2
-set expandtab
+set noexpandtab

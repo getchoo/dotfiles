@@ -5,18 +5,18 @@
 local M = {}
 
 M.bufferline = {
-  animation = true,
-  auto_hide = true,
-  icons = true,
-  maximum_padding = 2,
-  semantic_letters = true,
+	animation = true,
+	auto_hide = true,
+	icons = true,
+	maximum_padding = 2,
+	semantic_letters = true,
 }
 
 M.lualine = {
-  options = {
-    theme = "nord",
-  },
-  extensions = { "nvim-tree" },
+	options = {
+		theme = "catppuccin",
+	},
+	extensions = { "nvim-tree" },
 }
 
 M.tree = {}

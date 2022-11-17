@@ -3,16 +3,16 @@
 #
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-local zdump="${XDG_CACHE_HOME}/zsh/zcompdump"
+local zdump="${XDG_CACHE_HOME}/zsh/zdump"
 local antidote_dir="${ZDOTDIR}/.antidote"
 
   # bootstrap antidote
 if [[ ! -e "$antidote_dir/antidote.zsh" ]]
 then
-    git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"
+	git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"
 fi
 
 source "${antidote_dir}/antidote.zsh"
@@ -40,7 +40,7 @@ bashcompinit
 compinit -d "$zdump"
 if [[ ! "${zdump}.zwc" -nt "$zdump" ]]
 then
-  zcompile "$zdump"
+	zcompile "$zdump"
 fi
 unset zdump
 
@@ -62,12 +62,12 @@ setopt share_history
 
 # clear backbuffer with ctrl-l
 function clear-screen-and-scrollback() {
-    echoti civis >"$TTY"
-    printf '%b' '\e[H\e[2J' >"$TTY"
-    zle .reset-prompt
-    zle -R
-    printf '%b' '\e[3J' >"$TTY"
-    echoti cnorm >"$TTY"
+	echoti civis >"$TTY"
+	printf '%b' '\e[H\e[2J' >"$TTY"
+	zle .reset-prompt
+	zle -R
+	printf '%b' '\e[3J' >"$TTY"
+	echoti cnorm >"$TTY"
 }
 
 zle -N clear-screen-and-scrollback

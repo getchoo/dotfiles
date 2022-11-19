@@ -30,7 +30,7 @@ require("packer").startup(function(use)
 		as = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
-				flavour = "frappe", -- mocha, macchiato, frappe, latte
+				flavour = "mocha", -- mocha, macchiato, frappe, latte
 				integrations = {
 					barbar = true,
 					gitsigns = true,

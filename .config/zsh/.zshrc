@@ -6,7 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-local zdump="${XDG_CACHE_HOME}/zsh/zdump"
+local cache_path="${XDG_CACHE_HOME}/zsh"
+local zdump="${cache_path}/zdump"
 local antidote_dir="${ZDOTDIR}/.antidote"
 
   # bootstrap antidote
@@ -28,7 +29,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu 'select'
 zstyle ':completion:*' squeeze-slashes 'true'
 zstyle ':completion::*' use-cache 'true'
-zstyle ':completion::*' cache-path "$zdump"
+zstyle ':completion::*' cache-path "$cache_path"
 
 # load plugins
 antidote load

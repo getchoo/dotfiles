@@ -27,8 +27,9 @@ function load_plugins
 	end
 end
 
-if status is-interactive
+if status is-interactive || status is-login
 	load_plugins
+	set_envvars
 else
 	set_envvars
 end

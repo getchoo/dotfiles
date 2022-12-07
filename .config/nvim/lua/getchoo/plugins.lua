@@ -43,6 +43,7 @@ require("packer").startup(function(use)
 					telescope = true,
 					lsp_trouble = true,
 				},
+				no_italic = true,
 			})
 			vim.api.nvim_command("colorscheme catppuccin")
 		end,
@@ -108,8 +109,3 @@ require("packer").startup(function(use)
 		require("packer").sync()
 	end
 end)
-
-local config = require("getchoo.config")
-require("bufferline").setup(config.bufferline)
-require("lualine").setup(config.lualine)
-require("nvim-tree").setup(config.tree)

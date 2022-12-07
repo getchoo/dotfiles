@@ -8,11 +8,7 @@ local opt = vim.opt
 vim.g.use_lsp_plugins = false
 vim.g.use_mason = false
 
-require("getchoo.plugins")
-if vim.g.use_lsp_plugins then
-	require("getchoo.ftdetect")
-	require("getchoo.lsp")
-end
+require("getchoo")
 
 -- text options
 opt.tabstop = 2

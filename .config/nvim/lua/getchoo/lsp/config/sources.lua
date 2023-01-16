@@ -11,20 +11,20 @@ local M = {
 	null_ls = {
 		diagnostics.alex,
 		diagnostics.codespell,
-		diagnostics.flake8,
-		formatting.black,
+		diagnostics.pylint,
 		formatting.codespell,
 		formatting.prettier,
 		formatting.rustfmt,
 		formatting.stylua,
+		formatting.yapf,
 	},
 	mason = {
 		"alex",
-		"black",
 		"codespell",
-		"flake8",
 		"prettier",
+		"pylint",
 		"stylua",
+		"yapf",
 	},
 }
 

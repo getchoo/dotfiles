@@ -3,12 +3,6 @@
 # getchoo's bashrc
 #
 
-# drop into fish
-## if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
-## then
-##   exec fish
-## fi
-
 # options
 shopt -s cdspell
 shopt -s checkjobs

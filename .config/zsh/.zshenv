@@ -1,15 +1,18 @@
 #
 # getchoo's zshenv
 #
-
 source "${HOME}/.config/shell/profile"
 
-# add user's bin directory to path
-typeset -U path PATH
+# add user directories to path
+typeset -U paths=("$HOME/.local/bin" \
+	"$HOME/.local/share/nvim/mason/bin" \
+)
 
-if [[ -d "${HOME}/.local/bin" ]]; then
-	path=("${HOME}/.local/bin" "$path[@]")
-	export PATH
-fi
+typeset -U path
+
+for p in "${paths[@]}"; do
+	[[ -d "$p" ]] && \
+		path=("$p" "$path[@]")
+done
 
 zstyle ':antidote:bundle' use-friendly-names 'yes' # don't use ugly dirs

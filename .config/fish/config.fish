@@ -6,9 +6,14 @@ function set_envvars
 	# source bash profile
 	bash2env source "$HOME/.config/shell/profile"
 
-	# add user bin directory to path
-	if test -d "$HOME/.local/bin"
-		fish_add_path "$HOME/.local/bin"
+	set -l paths "$HOME/.local/bin" \
+		"$HOME/.local/share/nvim/mason/bin"
+
+	# add user directories to path
+	for path in $paths
+		if test -d $path
+			fish_add_path $path
+		end
 	end
 end
 
@@ -30,6 +35,6 @@ end
 if status is-interactive || status is-login
 	load_plugins
 	set_envvars
-else
-	set_envvars
 end
+
+set_envvars

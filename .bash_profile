@@ -5,10 +5,15 @@
 
 source "${HOME}/.config/shell/profile"
 
+
+declare -a paths=("$HOME/.local/bin" \
+	"$HOME/.local/share/nvim/mason/bin" \
+)
+
 # add user's bin directory to path
-if [ -d "${HOME}/.local/bin" ]
-then
-	export PATH="${HOME}/.local/bin:${PATH}"
-fi
+for path in "${paths[@]}"; do
+	[ -d "$path" ] && \
+		export PATH="$path:${PATH}"
+done
 
 source "${HOME}/.bashrc"

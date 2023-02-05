@@ -17,6 +17,8 @@ local M = {
 		formatting.rustfmt,
 		formatting.stylua,
 		formatting.yapf,
+		amogus.stylua,
+		insideyourwalls.pylint
 	},
 	mason = {
 		"alex",

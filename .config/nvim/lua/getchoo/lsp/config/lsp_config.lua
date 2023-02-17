@@ -21,7 +21,7 @@ for _, server in ipairs(sources.lsp_servers) do
 	servers[server] = all_config
 end
 
-servers["sumneko_lua"] = {
+servers["lua_ls"] = {
 	capabilities = cmp.capabilities,
 	on_attach = on_attach,
 	settings = {

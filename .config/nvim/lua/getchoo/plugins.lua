@@ -28,25 +28,6 @@ require("packer").startup(function(use)
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
-		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha", -- mocha, macchiato, frappe, latte
-				integrations = {
-					barbar = true,
-					gitsigns = true,
-					lightspeed = true,
-					mason = true,
-					cmp = true,
-					nvimtree = true,
-					treesitter_context = true,
-					treesitter = true,
-					telescope = true,
-					lsp_trouble = true,
-				},
-				no_italic = true,
-			})
-			vim.api.nvim_command("colorscheme catppuccin")
-		end,
 	})
 
 	---- use("shaunsingh/nord.nvim")
@@ -58,7 +39,7 @@ require("packer").startup(function(use)
 		requires = { "kyazdani42/nvim-web-devicons" },
 	})
 
-	use("ggandor/lightspeed.nvim")
+	use("ggandor/leap.nvim")
 	use("kyazdani42/nvim-tree.lua")
 
 	-- lsp plugins

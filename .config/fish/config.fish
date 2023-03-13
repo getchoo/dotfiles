@@ -30,6 +30,8 @@ function load_plugins
 	if command -q starship
 		starship init fish | source
 	end
+
+	fish_config theme choose "Catppuccin Mocha"
 end
 
 if status is-interactive || status is-login

@@ -10,7 +10,7 @@ local cache_path="${XDG_CACHE_HOME}/zsh"
 local zdump="${cache_path}/zdump"
 local antidote_dir="${ZDOTDIR}/.antidote"
 
-  # bootstrap antidote
+# bootstrap antidote
 if [[ ! -e "$antidote_dir/antidote.zsh" ]]
 then
 	git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"

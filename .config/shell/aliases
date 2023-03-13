@@ -1,3 +1,16 @@
+# ls
 alias ls='exa --icons'
+alias ll='ls -l'
+alias la='ls -a'
+
+# cat
+alias bat='bat --theme=catppuccin'
+alias cat='bat'
+
+# git
+alias g='git'
+alias gs='g status'
+alias gd='g diff'
 alias diff='diff --color=auto'
+
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

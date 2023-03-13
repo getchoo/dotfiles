@@ -14,7 +14,3 @@ set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
 set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
 set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
 set viminfofile=$XDG_STATE_HOME/vim/viminfo
-
-set tabstop=2
-set shiftwidth=2
-set noexpandtab

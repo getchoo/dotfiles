@@ -33,7 +33,7 @@ zstyle ':completion::*' cache-path "$cache_path"
 
 # load plugins
 antidote load
-## eval "$(zoxide init zsh)"
+command -v zoxide && eval "$(zoxide init zsh)"
 unset antidote_dir
 
 # compile completion

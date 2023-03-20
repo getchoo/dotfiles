@@ -3,9 +3,8 @@ alias ls='exa --icons'
 alias ll='ls -l'
 alias la='ls -a'
 
-# cat
+# set bat theme
 alias bat='bat --theme=catppuccin'
-alias cat='bat'
 
 # git
 alias g='git'

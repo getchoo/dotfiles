@@ -1,5 +1,5 @@
 --
--- plugins for neovim
+-- plugin init for neovim
 --
 
 local fn = vim.fn
@@ -30,17 +30,15 @@ require("packer").startup(function(use)
 		as = "catppuccin",
 	})
 
-	---- use("shaunsingh/nord.nvim")
-	---- use({ "rose-pine/neovim", as = "rose-pine" })
-
 	-- general use plugins
 	use({
-		"romgrk/barbar.nvim",
+		"akinsho/bufferline.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	})
 
 	use("ggandor/leap.nvim")
 	use("kyazdani42/nvim-tree.lua")
+	use("windwp/nvim-autopairs")
 
 	-- lsp plugins
 	if vim.g.use_lsp_plugins then
@@ -83,10 +81,16 @@ require("packer").startup(function(use)
 		})
 
 		use("lewis6991/gitsigns.nvim")
-		use("editorconfig/editorconfig-vim")
+		use("j-hui/fidget.nvim")
 	end
 
 	if Packer_bootstrap then
 		require("packer").sync()
 	end
 end)
+
+require("getchoo.plugins.general")
+
+if vim.g.use_lsp_plugins then
+	require("getchoo.plugins.lsp")
+end

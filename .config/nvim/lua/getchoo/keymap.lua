@@ -1,6 +1,8 @@
 --
--- keymaps for general plugins
+-- keymaps
 --
+
+vim.g.mapleader = ","
 
 local opts = { noremap = true, silent = true }
 local set = function(mode, key, cmd)
@@ -12,16 +14,28 @@ set("n", "<leader>t", function()
 end)
 
 for i = 1, 9 do
-	set("n", "<leader>" .. i, function()
-		local cmd = "BufferGoto " .. i
-		vim.cmd(cmd)
-	end)
+  set("n", "<leader>" .. i, function()
+    local vimcmd = "BufferLineGoToBuffer " .. i
+    vim.cmd(vimcmd)
+  end)
 end
 
-set("n", "<leader>p", function()
-	vim.cmd("BufferPick")
+set("n", "<leader>q", function()
+  vim.cmd("BufferLinePickClose")
 end)
 
-set("n", "<leader>q", function()
-	vim.cmd("BufferClose")
-end)
+if vim.g.use_lsp_plugins then
+	-- lsp
+	set("n", "<space>e", vim.diagnostic.open_float)
+	set("n", "[d", vim.diagnostic.goto_prev)
+	set("n", "]d", vim.diagnostic.goto_next)
+	set("n", "<space>q", vim.diagnostic.setloclist)
+
+	set("n", "<space>f", function()
+		vim.cmd("Telescope")
+	end)
+
+	set("n", "<space>t", function()
+		vim.cmd("TroubleToggle")
+	end)
+end

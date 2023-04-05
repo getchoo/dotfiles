@@ -55,6 +55,11 @@ require("cmp").setup({
 				fallback()
 			end
 		end, { "i", "s" }),
+		["<C-b>"] = mapping.scroll_docs(-4),
+		["<C-f>"] = mapping.scroll_docs(4),
+		["<C-Space>"] = mapping.complete(),
+		["<C-e>"] = mapping.abort(),
+		["<CR>"] = mapping.confirm({ select = true }),
 	}),
 
 	sources = cmp.config.sources({
@@ -82,28 +87,52 @@ local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
 local sources = {
-	lsp_servers = { "bashls", "clangd", "pyright", "rust_analyzer" },
+	lsp_servers = {
+		"bashls",
+		"clangd",
+		"eslint",
+		"pyright",
+		"rust_analyzer",
+		"tsserver",
+		"tailwindcss",
+		"nimls",
+	},
 	null_ls = {
+		diagnostics.actionlint,
 		diagnostics.alex,
 		diagnostics.codespell,
 		diagnostics.deadnix,
+		diagnostics.markdownlint,
 		diagnostics.pylint,
 		diagnostics.shellcheck,
 		diagnostics.statix,
 		formatting.alejandra,
+		formatting.beautysh,
 		formatting.codespell,
+		formatting.just,
+		formatting.markdownlint,
+		formatting.nimpretty,
 		formatting.prettier,
 		formatting.rustfmt,
 		formatting.stylua,
+		formatting.shellharden,
 		formatting.yapf,
 	},
 	mason = {
+		"actionlint",
 		"alex",
+		"beautysh",
 		"codespell",
+		"eslint-lsp",
+		"markdownlint",
 		"pylint",
 		"prettier",
 		"shellcheck",
+		"shellharden",
 		"stylua",
+		"rustfmt",
+		"tailwindcss-language-server",
+		"typescript-language-server",
 		"yapf",
 	},
 }

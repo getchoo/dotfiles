@@ -32,6 +32,7 @@ function load_plugins
 	end
 
 	fish_config theme choose "Catppuccin Mocha"
+	abbr !! --position anywhere --function last_history_item
 end
 
 if status is-interactive || status is-login

@@ -5,8 +5,8 @@
 local cmd = vim.cmd
 local opt = vim.opt
 
-vim.g.use_lsp_plugins = false
-vim.g.use_mason = false
+vim.g.use_lsp_plugins = true
+vim.g.use_mason = true
 
 require("getchoo")
 

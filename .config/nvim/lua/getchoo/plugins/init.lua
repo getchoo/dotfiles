@@ -61,6 +61,7 @@ require("packer").startup(function(use)
 				require("nvim-treesitter.install").update({ with_sync = true })
 			end,
 		})
+		use("IndianBoy42/tree-sitter-just")
 
 		use("hrsh7th/nvim-cmp")
 		use("hrsh7th/cmp-nvim-lsp")

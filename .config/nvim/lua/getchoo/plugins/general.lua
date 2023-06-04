@@ -16,7 +16,6 @@ require("catppuccin").setup({
 	compile_path = compile_path,
 	flavour = "mocha", -- mocha, macchiato, frappe, latte
 	integrations = {
-		barbar = true,
 		cmp = true,
 		gitsigns = true,
 		leap = true,
@@ -36,9 +35,12 @@ vim.api.nvim_command("colorscheme catppuccin")
 ---- bufferline
 require("bufferline").setup({
 	options = {
+		always_show_bufferline = false,
 		highlights = require("catppuccin.groups.integrations.bufferline").get(),
 		diagnostics = "nvim_lsp",
+		mode = "buffers",
 		numbers = "ordinal",
+		separator_style = "slant",
 	},
 })
 
